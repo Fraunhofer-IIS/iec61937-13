@@ -1,0 +1,9 @@
+#####
+# build in git repo
+#####
+bin/
+/lib/
+obj/
+*.o
+build*/
+
