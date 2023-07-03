@@ -2,7 +2,7 @@
 
 The iec61937-13 project is a C based implementation of the [IEC 61937-13:2018 standard](https://webstore.iec.ch/publication/29325) and covers the encapsulation of MPEG-H bitstream in IEC data bursts.
 
-For documentation and usage, please have a look at the [Wiki](https://github.com/Fraunhofer-IIS/iec61937-13/-/wikis/home).
+For documentation and usage, please have a look at the [Wiki](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/home).
 
 ## Supported architectures
 
@@ -105,7 +105,7 @@ The following project-specific CMake parameters are available:
 
 ### How to build using CMake
 
-Find below the basic instructions to build the project or visit the ["Wiki Build"](https://github.com/Fraunhofer-IIS/iec61937-13/-/wikis/Build) page(s) to get further information (additional build parameters and platform specific build instructions).
+Find below the basic instructions to build the project or visit the ["Wiki Build"](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/Build) page(s) to get further information (additional build parameters and platform specific build instructions).
 
 1. Clone the project and make a build folder.
    ```
@@ -125,8 +125,8 @@ Find below the basic instructions to build the project or visit the ["Wiki Build
 
 The **iec61937-13** provides following command-line-based examples programs:
 
-- [IEC61937-13 encoder](https://github.com/Fraunhofer-IIS/iec61937-13/-/wikis/Demos/IEC61937-13-encoder)
-- [IEC61937-13 decoder](https://github.com/Fraunhofer-IIS/iec61937-13/-/wikis/Demos/IEC61937-13-decoder)
+- [IEC61937-13 encoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-encoder)
+- [IEC61937-13 decoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-decoder)
 
 ## Contributing
 
