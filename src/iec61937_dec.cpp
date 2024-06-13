@@ -498,11 +498,9 @@ IECDEC_RESULT iec61937_decode_process(HANDLE_IEC61937_DECODER h, uint8_t* output
     }
 
     // Check if frame is split across IEC frames
-    // For audioMode == 1 the payloadLength was stated in 8-byte units.
-    // For audioMode == 0 the payloadLength is stated in bytes.
-    if (h->payloadLength - dataOffset + (h->audioMode == 0 ? 1 : 8) < dataLength) {
+    if (dataOffset + dataLength > IEC_HEADER_SIZE_BYTES + h->payloadLength) {
       uint32_t numAuBytesMissing =
-          dataLength - (h->payloadLength - dataOffset + (h->audioMode == 0 ? 1 : 8));
+          dataLength - (h->payloadLength - dataOffset + IEC_HEADER_SIZE_BYTES);
       uint32_t numAuBytesAvailable = dataLength - numAuBytesMissing;
       h->frameBytesPending = numAuBytesAvailable;
       h->frameBytesMissing = numAuBytesMissing;
