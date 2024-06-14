@@ -94,18 +94,22 @@ The following project-specific CMake parameters are available:
 
 <table>
 <tr>
-<td><code>iec16937-13_BUILD_BINARIES</code></td>
+<td><code>iec61937-13_BUILD_BINARIES</code></td>
 <td>Enable / Disable demo tool compilation.</td>
 </tr>
 <tr>
-<td><code>iec16937-13_BUILD_DOC</code></td>
-<td>Enable / Disable documentation generation (requires a working [Doxygen](https://www.doxygen.nl/) installation).</td>
+<td><code>iec61937-13_BUILD_DOC</code></td>
+<td>
+
+Enable / Disable documentation generation (requires a working [Doxygen](https://www.doxygen.nl/) installation).
+
+</td>
 </tr>
 </table>
 
 ### How to build using CMake
 
-Find below the basic instructions to build the project or visit the ["Wiki Build"](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/Build) page(s) to get further information (additional build parameters and platform specific build instructions).
+Find below the basic instructions to build the project or visit the ["Wiki Build"](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/Build-instructions) page(s) to get further information (additional build parameters and platform specific build instructions).
 
 1. Clone the project and make a build folder.
    ```
@@ -114,28 +118,28 @@ Find below the basic instructions to build the project or visit the ["Wiki Build
    ```
 2. Configure the project using CMake.
    ```
-   $ cmake -S iec61937-13 -B build
+   $ cmake -S iec61937-13 -B build -DCMAKE_BUILD_TYPE=Release
    ```
 3. Build the project.
    ```
-   $ cmake --build build
+   $ cmake --build build --config Release
    ```
 
 # Command-line example programs
 
 The **iec61937-13** provides following command-line-based examples programs:
 
-- [IEC61937-13 encoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-encoder)
-- [IEC61937-13 decoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-decoder)
+- [IEC61937-13 encoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-encoder-example)
+- [IEC61937-13 decoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-decoder-example)
 
 ## Contributing
 
 Contributions may be done through a pull request to the upstream repository.
 
-- Create a fork based on the latest master branch
-- Apply changes to the fork
-- Add the author names to [AUTHORS.md](./AUTHORS.md)
-- Create a pull request to the upstream repository. The request must contain a detailed description of its purpose
+- Create a fork based on the latest master branch.
+- Apply changes to the fork.
+- Add the author names to [AUTHORS.md](./AUTHORS.md).
+- Create a pull request to the upstream repository. The request must contain a detailed description of its purpose.
 
 ## Links
 
