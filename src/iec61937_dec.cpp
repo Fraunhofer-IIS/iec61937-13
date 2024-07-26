@@ -508,7 +508,7 @@ IECDEC_RESULT iec61937_decode_process(HANDLE_IEC61937_DECODER h, uint8_t* output
       // Write partial data to pending buffer.
       memcpy(h->frameBufferPending, h->workBuffer + h->syncCandidateIndex + dataOffset,
              h->frameBytesPending);
-      h->pcmOffsetPending = pcmOffset - h->frameLength;
+      h->pcmOffsetPending = pcmOffset - (int32_t)h->frameLength;
     } else {
       // Store length and PCM offset of complete AU to be written.
       *pOutputBufferLength = dataLength;
