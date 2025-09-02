@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(iec61937-13 VERSION 1.0.2)
+project(iec61937-13 VERSION 1.0.3)
 project(iec61937-13 LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 11)
 
@@ -21,7 +21,7 @@ FetchContent_Declare(
 FetchContent_Declare(
   mmtisobmff
   GIT_REPOSITORY https://github.com/Fraunhofer-IIS/mmtisobmff.git
-  GIT_TAG        r1.0.0
+  GIT_TAG        r1.0.1
 )
 
 get_directory_property(parentDir PARENT_DIRECTORY)
