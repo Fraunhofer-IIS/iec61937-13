@@ -80,6 +80,14 @@ www.iis.fraunhofer.de/amm
 amm-info@iis.fraunhofer.de
 -----------------------------------------------------------------------------*/
 
+#if !defined(IEC61937_COMMON_H)
+#define IEC61937_COMMON_H
+
+/**
+ * @file   iec61937_common.h
+ * @brief  IEC61937-13 common definitions for encoder and decoder library.
+ */
+
 #define SYNC_PREAMBLE_0 0xF8
 #define SYNC_PREAMBLE_1 0x72
 #define SYNC_PREAMBLE_2 0x4E
@@ -88,3 +96,20 @@ amm-info@iis.fraunhofer.de
 
 #define IEC_HEADER_SIZE_BYTES 8
 #define IEC_BURST_SPACING_SIZE_BYTES 8
+
+#define IEC60958_FRAME_SIZE_BYTES 4
+
+#define IEC61937_MAX_SAMPLERATE_FACTOR 16
+#define IEC61937_MAX_AUDIODATA_FRAME_LENGTH 4096
+
+#define MAX_IEC61937_FRAME_SIZE_BYTES                                        \
+  (IEC61937_MAX_AUDIODATA_FRAME_LENGTH) * (IEC61937_MAX_SAMPLERATE_FACTOR) * \
+      (IEC60958_FRAME_SIZE_BYTES)
+
+// Buffer size in bytes to hold one MPEG-H frame (sequence of MHAS packages) + overhead
+// for MPEG-H Level 4
+#define MPEGH_MAX_FRAME_SIZE_BYTES 65536
+
+#define MPEGH_MAX_FRAME_DURATION_SAMPLES 4096
+
+#endif /* !defined(IEC61937_COMMON_H) */

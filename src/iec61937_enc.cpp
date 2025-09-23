@@ -81,17 +81,9 @@ amm-info@iis.fraunhofer.de
 -----------------------------------------------------------------------------*/
 
 #include "iec61937_enc.h"
-#include "iec61937_common.h"
 
 #include <stdlib.h>
 #include <string.h>
-
-#define MAX_NUM_MPEGH_FRAMES 5
-// Buffer size in bytes to hold one MPEG-H frame (sequence of MHAS packages) + overhead
-// for MPEG-H Level 4
-#define MAX_MPEGH_FRAME_SIZE 65536
-#define MAX_MPEGH_FRAME_DURATION 4096
-#define WORKBUFFER_SIZE_BYTES (MAX_MPEGH_FRAME_SIZE) * (MAX_NUM_MPEGH_FRAMES)
 
 struct iec61937_encoder_state {
   uint8_t rateFactor;
@@ -103,13 +95,13 @@ struct iec61937_encoder_state {
   int32_t pcmOffset;
   int32_t overallDuration;
 
-  uint8_t workBuffer[WORKBUFFER_SIZE_BYTES];
+  uint8_t workBuffer[ENC_WORKBUFFER_SIZE_BYTES];
   uint8_t* pWorkBufferWrite;
   uint8_t* pWorkBufferRead;
 
   uint32_t framesStoredCount;
-  uint32_t frameLength[MAX_NUM_MPEGH_FRAMES];
-  uint32_t frameDuration[MAX_NUM_MPEGH_FRAMES];
+  uint32_t frameLength[ENC_WORKBUFFER_NUM_MPEGH_FRAMES];
+  uint32_t frameDuration[ENC_WORKBUFFER_NUM_MPEGH_FRAMES];
   bool auPending;
 } iec61937_encoder_state;
 
@@ -118,7 +110,7 @@ static void resetBufferState(HANDLE_IEC61937_ENCODER h) {
   h->pWorkBufferWrite = h->workBuffer;
 
   h->framesStoredCount = 0;
-  for (uint32_t i = 0; i < MAX_NUM_MPEGH_FRAMES; i++) {
+  for (uint32_t i = 0; i < ENC_WORKBUFFER_NUM_MPEGH_FRAMES; i++) {
     h->frameLength[i] = 0;
     h->frameDuration[i] = 0;
   }
@@ -159,7 +151,7 @@ HANDLE_IEC61937_ENCODER iec61937_encode_open(uint8_t rateFactor) {
   h->payloadHeaderSize = (h->audioMode == 0) ? 6 : 8;
 
   // determine the burst repetition period
-  h->audioFrameLength = IEC61937_AUDIOFRAME_LENGTH;
+  h->audioFrameLength = ENC_IEC61937_AUDIODATA_FRAME_LENGTH;
   h->burstRepetitionPeriod = h->audioFrameLength * IEC60958_FRAME_SIZE_BYTES;
   if (h->audioMode == 1) {
     h->burstRepetitionPeriod = h->burstRepetitionPeriod << (h->rateFactor + 1);
@@ -295,7 +287,7 @@ IECENC_RESULT iec61937_encode_process(HANDLE_IEC61937_ENCODER h, const uint8_t* 
   if (*pOutputBufferLength < h->burstRepetitionPeriod) {
     return IECENC_BUFFER_ERROR;
   }
-  if (duration > MAX_MPEGH_FRAME_DURATION) {
+  if (duration > MPEGH_MAX_FRAME_DURATION_SAMPLES) {
     return IECENC_DURATION_ERROR;
   }
   *pOutputBufferLength = 0;
@@ -311,7 +303,7 @@ IECENC_RESULT iec61937_encode_process(HANDLE_IEC61937_ENCODER h, const uint8_t* 
 
   // Accumulate new data
   if (inputBufferLength != 0) {
-    if (h->framesStoredCount + 1 >= MAX_NUM_MPEGH_FRAMES) {
+    if (h->framesStoredCount + 1 >= ENC_WORKBUFFER_NUM_MPEGH_FRAMES) {
       return IECENC_BUFFER_ERROR;
     }
     if (h->pWorkBufferWrite + inputBufferLength > h->workBuffer + sizeof(h->workBuffer)) {

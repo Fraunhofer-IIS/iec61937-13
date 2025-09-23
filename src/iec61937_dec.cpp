@@ -81,17 +81,16 @@ amm-info@iis.fraunhofer.de
 -----------------------------------------------------------------------------*/
 
 #include "iec61937_dec.h"
-#include "iec61937_common.h"
 
 #include <stdlib.h>
 #include <string.h>
 
 struct iec61937_decoder_state {
-  uint8_t workBuffer[WORKBUFFER_SIZE_BYTES];
+  uint8_t workBuffer[DEC_WORKBUFFER_SIZE_BYTES];
   uint32_t workBufferBytesAvailable;
 
   // Pending data state
-  uint8_t frameBufferPending[MAX_MPEGH_FRAME_SIZE];
+  uint8_t frameBufferPending[MPEGH_MAX_FRAME_SIZE_BYTES];
   uint32_t frameBytesPending;
   uint32_t frameBytesMissing;
   int32_t pcmOffsetPending; /* PCM offset of pending audio frame */
@@ -307,7 +306,7 @@ IECDEC_RESULT iec61937_decode_feed(HANDLE_IEC61937_DECODER h, const uint8_t* inp
   }
   // check if the input data fits into the work buffer
   if (h->workBufferBytesAvailable > UINT32_MAX - inputBufferLength ||
-      h->workBufferBytesAvailable + inputBufferLength > WORKBUFFER_SIZE_BYTES) {
+      h->workBufferBytesAvailable + inputBufferLength > DEC_WORKBUFFER_SIZE_BYTES) {
     return IECDEC_BUFFER_ERROR;
   }
 

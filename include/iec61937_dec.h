@@ -80,6 +80,8 @@ www.iis.fraunhofer.de/amm
 amm-info@iis.fraunhofer.de
 -----------------------------------------------------------------------------*/
 
+#include "iec61937_common.h"
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -95,18 +97,9 @@ amm-info@iis.fraunhofer.de
 extern "C" {
 #endif
 
-// Buffer size in bytes to hold one MPEG-H frame (sequence of MHAS packages) + overhead
-// for MPEG-H Level 4
-#define MAX_MPEGH_FRAME_SIZE 65536
-
-#define MAX_AUDIOFRAME_LENGTH 4096
-#define IEC61937_MAX_SAMPLERATE_FACTOR 16
-#define IEC60958_FRAME_SIZE_BYTES 4
-
-#define MAX_IEC61937_FRAME_SIZE_BYTES \
-  (MAX_AUDIOFRAME_LENGTH) * (IEC61937_MAX_SAMPLERATE_FACTOR) * (IEC60958_FRAME_SIZE_BYTES)
-
-#define WORKBUFFER_SIZE_BYTES (MAX_IEC61937_FRAME_SIZE_BYTES) * 3
+#define DEC_WORKBUFFER_NUM_IEC61937_FRAMES 3
+#define DEC_WORKBUFFER_SIZE_BYTES \
+  (MAX_IEC61937_FRAME_SIZE_BYTES) * (DEC_WORKBUFFER_NUM_IEC61937_FRAMES)
 
 typedef enum IECDEC_RESULT {
   IECDEC_OK = 0,            /*!< Ok, no error */

@@ -204,7 +204,7 @@ class CProcessor {
 
   void process() {
     // Pre-Allocate the sample with max sample size to avoid re-allocation of memory.
-    CSample sample{MAX_MPEGH_FRAME_SIZE};
+    CSample sample{MPEGH_MAX_FRAME_SIZE_BYTES};
 
     // Adjust MPEG-H configuration
     SMpeghMhm1TrackConfig mpeghConfig;
@@ -247,12 +247,12 @@ class CProcessor {
       inputDataAvailable = true;
 
       while (inputDataAvailable) {
-        uint32_t outputDataLength = MAX_MPEGH_FRAME_SIZE;
+        uint32_t outputDataLength = MPEGH_MAX_FRAME_SIZE_BYTES;
         int32_t pcmOffset = 0;
         uint32_t iecFrameLength = 0;
         bool iecFrameProcessed = false;
         sample.clear();
-        sample.rawData.resize(MAX_MPEGH_FRAME_SIZE);
+        sample.rawData.resize(MPEGH_MAX_FRAME_SIZE_BYTES);
 
         err = iec61937_decode_process(m_decoder, sample.rawData.data(), &outputDataLength,
                                       &pcmOffset, &iecFrameLength, &iecFrameProcessed);

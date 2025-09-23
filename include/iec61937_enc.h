@@ -80,6 +80,8 @@ www.iis.fraunhofer.de/amm
 amm-info@iis.fraunhofer.de
 -----------------------------------------------------------------------------*/
 
+#include "iec61937_common.h"
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -95,12 +97,10 @@ amm-info@iis.fraunhofer.de
 extern "C" {
 #endif
 
-#define IEC61937_AUDIOFRAME_LENGTH 1024
-#define IEC61937_MAX_SAMPLERATE_FACTOR 16
-#define IEC60958_FRAME_SIZE_BYTES 4
+#define ENC_IEC61937_AUDIODATA_FRAME_LENGTH 1024
 
-#define MAX_IEC61937_FRAME_SIZE_BYTES \
-  (IEC61937_AUDIOFRAME_LENGTH) * (IEC61937_MAX_SAMPLERATE_FACTOR) * (IEC60958_FRAME_SIZE_BYTES)
+#define ENC_WORKBUFFER_NUM_MPEGH_FRAMES 5
+#define ENC_WORKBUFFER_SIZE_BYTES (MPEGH_MAX_FRAME_SIZE_BYTES) * (ENC_WORKBUFFER_NUM_MPEGH_FRAMES)
 
 typedef enum IECENC_RESULT {
   IECENC_OK = 0,         /*!< Ok, no error */
