@@ -82,7 +82,7 @@ amm-info@iis.fraunhofer.de
 
 // system includes
 #include <string>
-#include <iostream>
+#include <fstream>
 
 // external includes
 #include "ilo/memory.h"
