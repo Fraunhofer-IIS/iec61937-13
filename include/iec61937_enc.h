@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------
 Software License for The Fraunhofer FDK MPEG-H Software
 
-Copyright (c) 2018 - 2023 Fraunhofer-Gesellschaft zur Förderung der angewandten
+Copyright (c) 2018 - 2025 Fraunhofer-Gesellschaft zur Förderung der angewandten
 Forschung e.V. and Contributors
 All rights reserved.
 
@@ -106,7 +106,8 @@ typedef enum IECENC_RESULT {
   IECENC_OK = 0,         /*!< Ok, no error */
   IECENC_BUFFER_ERROR,   /*!< Working buffer full or output buffer size too small */
   IECENC_NULLPTR_ERROR,  /*!< A nullptr was used */
-  IECENC_DURATION_ERROR, /*!< The provided frame duration exceeds the maximum allowed duration */
+  IECENC_DURATION_ERROR, /*!< The provided frame duration is 0 or exceeds the maximum allowed
+                            duration */
 } IECENC_RESULT;
 
 /* IEC61937-13 encoder state structure */

@@ -1,7 +1,7 @@
 /*-----------------------------------------------------------------------------
 Software License for The Fraunhofer FDK MPEG-H Software
 
-Copyright (c) 2018 - 2023 Fraunhofer-Gesellschaft zur Förderung der angewandten
+Copyright (c) 2018 - 2025 Fraunhofer-Gesellschaft zur Förderung der angewandten
 Forschung e.V. and Contributors
 All rights reserved.
 
@@ -287,7 +287,7 @@ IECENC_RESULT iec61937_encode_process(HANDLE_IEC61937_ENCODER h, const uint8_t* 
   if (*pOutputBufferLength < h->burstRepetitionPeriod) {
     return IECENC_BUFFER_ERROR;
   }
-  if (duration > MPEGH_MAX_FRAME_DURATION_SAMPLES) {
+  if (duration == 0 || duration > MPEGH_MAX_FRAME_DURATION_SAMPLES) {
     return IECENC_DURATION_ERROR;
   }
   *pOutputBufferLength = 0;
