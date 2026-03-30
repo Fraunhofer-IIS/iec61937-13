@@ -17,3 +17,7 @@ target_include_directories(iec61937-13_dec
   PUBLIC
     ${PROJECT_SOURCE_DIR}/include
 )
+
+include(GNUInstallDirs)
+install(TARGETS iec61937-13_enc iec61937-13_dec)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} FILES_MATCHING PATTERN "*.h")
