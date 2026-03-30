@@ -100,10 +100,12 @@ The following project-specific CMake parameters are available:
 <tr>
 <td><code>iec61937-13_BUILD_DOC</code></td>
 <td>
-
 Enable / Disable documentation generation (requires a working [Doxygen](https://www.doxygen.nl/) installation).
-
 </td>
+</tr>
+<tr>
+<td><code>USE_PKGCONFIG_DEPS</code></td>
+<td>Consume the dependencies via pkg-config from a system-wide installation instead of downloading and building them locally.</td>
 </tr>
 </table>
 
@@ -129,8 +131,8 @@ Find below the basic instructions to build the project or visit the ["Wiki Build
 
 The **iec61937-13** provides following command-line-based examples programs:
 
-- [IEC61937-13 encoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-encoder-example)
-- [IEC61937-13 decoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937-13-decoder-example)
+- [IEC61937-13 encoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937–13-encoder-example)
+- [IEC61937-13 decoder](https://github.com/Fraunhofer-IIS/iec61937-13/wiki/IEC61937–13-decoder-example)
 
 ## Contributing
 
@@ -148,8 +150,8 @@ Contributions may be done through a pull request to the upstream repository.
 
 ## License
 
-Please see the [LICENSE.txt](./LICENSE.txt) file for the terms of use that apply to the software in this repository.
+Please see the [LICENSE.txt](./LICENSE.txt) file for the terms of use that apply to the software in this repository.
 
 Fraunhofer supports the development of MPEG-H products and services by offering additional software, documentation, and technical advice. In addition, it operates the MPEG-H Trademark Program to ease interoperability testing of end-products. Please visit [www.mpegh.com](https://mpegh.com) for more information.
 
-For more information, please contact amm-info@iis.fraunhofer.de
+For more information, please contact amm-info@iis.fraunhofer.de
